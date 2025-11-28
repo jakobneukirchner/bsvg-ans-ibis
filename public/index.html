@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#00843D">
+  <meta name="description" content="BSVG Ansagesystem - Manuelles Straßenbahn-Ansagesystem für Braunschweig">
+  
+  <title>BSVG Ansagesystem</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <!-- Main Container -->
+  <main class="page-container">
+    <!-- Header -->
+    <header class="page-header">
+      <div class="header-content">
+        <div class="icon icon--xl icon--primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="16" height="12" rx="2" ry="2"></rect>
+            <path d="M4 8V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"></path>
+            <line x1="8" y1="20" x2="6" y2="23"></line>
+            <line x1="16" y1="20" x2="18" y2="23"></line>
+            <circle cx="9" cy="14" r="1"></circle>
+            <circle cx="15" cy="14" r="1"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1 class="header-title">BSVG Ansagesystem</h1>
+          <p class="header-subtitle">Straßenbahn Braunschweig</p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Input Section -->
+    <section class="input-section">
+      <div class="input-card">
+        <form id="lineInputForm" class="line-form">
+          <div class="form-group">
+            <label for="lineInput" class="form-label">
+              Linie / Umlauf
+            </label>
+            <input 
+              type="text" 
+              id="lineInput" 
+              class="form-input form-input--large" 
+              placeholder="003/10"
+              inputmode="numeric"
+              pattern="\d{3}/\d{2}"
+              maxlength="6"
+              required
+              autocomplete="off"
+              autofocus
+            >
+            <span class="form-help">Format: LLL/UU (z.B. 003/10 oder 010/25)</span>
+            <span id="inputError" class="form-error hidden"></span>
+          </div>
+          
+          <button type="submit" class="btn btn--primary btn--large btn--full submit-btn">
+            <span class="btn-text">BESTÄTIGEN</span>
+            <span class="icon icon--md icon--white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </button>
+        </form>
+      </div>
+    </section>
+    
+    <!-- Recent Entries -->
+    <section id="recentSection" class="recent-section hidden">
+      <h2 class="recent-title">Letzte Eingaben</h2>
+      <div id="recentEntries" class="recent-list"></div>
+    </section>
+    
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-overlay hidden">
+      <div class="loading-content">
+        <div class="spinner spinner--large"></div>
+        <p class="loading-text">Lade Daten...</p>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p class="footer-text">
+      <small>&copy; 2025 BSVG | Manuelles Ansagesystem</small>
+    </p>
+  </footer>
+  
+  <!-- JavaScript -->
+  <script src="/js/config.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/storage.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
