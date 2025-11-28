@@ -1,0 +1,106 @@
+{
+  "stops": [
+    {
+      "id": "bsvg_001",
+      "name": "Hauptbahnhof",
+      "shortCode": "HBF",
+      "type": "regular",
+      "lines": ["1", "2", "3", "5"],
+      "isTemporary": false,
+      "audioId": "stop_hauptbahnhof"
+    },
+    {
+      "id": "bsvg_002",
+      "name": "Rathaus",
+      "shortCode": "RAT",
+      "type": "regular",
+      "lines": ["1", "10"],
+      "isTemporary": false,
+      "audioId": "stop_rathaus"
+    },
+    {
+      "id": "bsvg_003",
+      "name": "Gliesmarode",
+      "shortCode": "GLI",
+      "type": "regular",
+      "lines": ["3"],
+      "isTemporary": false,
+      "audioId": "dest_gliesmarode"
+    },
+    {
+      "id": "bsvg_004",
+      "name": "Volkmarode",
+      "shortCode": "VOL",
+      "type": "regular",
+      "lines": ["3"],
+      "isTemporary": false,
+      "audioId": "dest_volkmarode"
+    },
+    {
+      "id": "bsvg_005",
+      "name": "Altewiekring",
+      "shortCode": "AWR",
+      "type": "regular",
+      "lines": ["3"],
+      "isTemporary": false,
+      "audioId": "stop_altewiekring"
+    },
+    {
+      "id": "bsvg_456",
+      "name": "Ersatzhaltestelle Altewiekring",
+      "shortCode": "ERS-A",
+      "type": "ersatz",
+      "lines": ["3"],
+      "isTemporary": true,
+      "audioId": "via_ersatz_awr",
+      "validFrom": "2025-11-15",
+      "validUntil": "2026-01-15",
+      "reason": "Bauarbeiten Altewiekring"
+    },
+    {
+      "id": "bsvg_006",
+      "name": "Lehndorf",
+      "shortCode": "LEH",
+      "type": "regular",
+      "lines": ["1"],
+      "isTemporary": false,
+      "audioId": "dest_lehndorf"
+    },
+    {
+      "id": "bsvg_007",
+      "name": "Heidberg",
+      "shortCode": "HEI",
+      "type": "regular",
+      "lines": ["1"],
+      "isTemporary": false,
+      "audioId": "dest_heidberg"
+    },
+    {
+      "id": "bsvg_008",
+      "name": "Rautheim",
+      "shortCode": "RAU",
+      "type": "regular",
+      "lines": ["2"],
+      "isTemporary": false,
+      "audioId": "dest_rautheim"
+    },
+    {
+      "id": "bsvg_009",
+      "name": "Stöckheim",
+      "shortCode": "STO",
+      "type": "regular",
+      "lines": ["5"],
+      "isTemporary": false,
+      "audioId": "dest_stoeckheim"
+    },
+    {
+      "id": "bsvg_010",
+      "name": "Melverode",
+      "shortCode": "MEL",
+      "type": "regular",
+      "lines": ["10"],
+      "isTemporary": false,
+      "audioId": "dest_melverode"
+    }
+  ]
+}

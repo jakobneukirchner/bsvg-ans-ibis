@@ -1,0 +1,172 @@
+{
+  "audioFiles": [
+    {
+      "id": "intro_tram",
+      "path": "announcements/de/intro_tram.mp3",
+      "duration": 2.5,
+      "language": "de",
+      "tags": ["intro", "system"],
+      "description": "Dies ist eine Straßenbahn"
+    },
+    {
+      "id": "line_1",
+      "path": "announcements/de/lines/line_1.mp3",
+      "duration": 0.8,
+      "language": "de",
+      "tags": ["line", "line_number"],
+      "description": "der Linie 1"
+    },
+    {
+      "id": "line_2",
+      "path": "announcements/de/lines/line_2.mp3",
+      "duration": 0.8,
+      "language": "de",
+      "tags": ["line", "line_number"],
+      "description": "der Linie 2"
+    },
+    {
+      "id": "line_3",
+      "path": "announcements/de/lines/line_3.mp3",
+      "duration": 0.8,
+      "language": "de",
+      "tags": ["line", "line_number"],
+      "description": "der Linie 3"
+    },
+    {
+      "id": "line_5",
+      "path": "announcements/de/lines/line_5.mp3",
+      "duration": 0.8,
+      "language": "de",
+      "tags": ["line", "line_number"],
+      "description": "der Linie 5"
+    },
+    {
+      "id": "line_10",
+      "path": "announcements/de/lines/line_10.mp3",
+      "duration": 0.9,
+      "language": "de",
+      "tags": ["line", "line_number"],
+      "description": "der Linie 10"
+    },
+    {
+      "id": "connector_nach",
+      "path": "announcements/de/connectors/nach.mp3",
+      "duration": 0.5,
+      "language": "de",
+      "tags": ["connector", "to"],
+      "description": "nach"
+    },
+    {
+      "id": "connector_ueber",
+      "path": "announcements/de/connectors/ueber.mp3",
+      "duration": 0.5,
+      "language": "de",
+      "tags": ["connector", "via_word"],
+      "description": "über"
+    },
+    {
+      "id": "conjunction_und",
+      "path": "announcements/de/conjunctions/und.mp3",
+      "duration": 0.4,
+      "language": "de",
+      "tags": ["conjunction", "and"],
+      "description": "und"
+    },
+    {
+      "id": "dest_gliesmarode",
+      "path": "announcements/de/destinations/gliesmarode.mp3",
+      "duration": 1.1,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Gliesmarode"
+    },
+    {
+      "id": "dest_volkmarode",
+      "path": "announcements/de/destinations/volkmarode.mp3",
+      "duration": 1.2,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Volkmarode"
+    },
+    {
+      "id": "dest_lehndorf",
+      "path": "announcements/de/destinations/lehndorf.mp3",
+      "duration": 1.0,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Lehndorf"
+    },
+    {
+      "id": "dest_heidberg",
+      "path": "announcements/de/destinations/heidberg.mp3",
+      "duration": 1.0,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Heidberg"
+    },
+    {
+      "id": "dest_rautheim",
+      "path": "announcements/de/destinations/rautheim.mp3",
+      "duration": 1.1,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Rautheim"
+    },
+    {
+      "id": "dest_stoeckheim",
+      "path": "announcements/de/destinations/stoeckheim.mp3",
+      "duration": 1.2,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Stöckheim"
+    },
+    {
+      "id": "dest_melverode",
+      "path": "announcements/de/destinations/melverode.mp3",
+      "duration": 1.1,
+      "language": "de",
+      "tags": ["destination"],
+      "description": "Melverode"
+    },
+    {
+      "id": "via_ersatz_awr",
+      "path": "announcements/de/via/ersatz_awr.mp3",
+      "duration": 2.8,
+      "language": "de",
+      "tags": ["via"],
+      "description": "Ersatzhaltestelle Altewiekring"
+    },
+    {
+      "id": "stop_hauptbahnhof",
+      "path": "announcements/de/stops/hauptbahnhof.mp3",
+      "duration": 1.5,
+      "language": "de",
+      "tags": ["stop"],
+      "description": "Hauptbahnhof"
+    },
+    {
+      "id": "stop_rathaus",
+      "path": "announcements/de/stops/rathaus.mp3",
+      "duration": 1.0,
+      "language": "de",
+      "tags": ["stop"],
+      "description": "Rathaus"
+    },
+    {
+      "id": "stop_altewiekring",
+      "path": "announcements/de/stops/altewiekring.mp3",
+      "duration": 1.6,
+      "language": "de",
+      "tags": ["stop"],
+      "description": "Altewiekring"
+    },
+    {
+      "id": "door_closing_chime",
+      "path": "announcements/de/chimes/door_closing.mp3",
+      "duration": 1.0,
+      "language": "de",
+      "tags": ["chime", "door"],
+      "description": "Türschließton"
+    }
+  ]
+}
