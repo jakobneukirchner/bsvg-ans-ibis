@@ -1,0 +1,23 @@
+{
+  "name": "bsvg-ans-ibis",
+  "version": "1.0.0",
+  "description": "BSVG Tram Announcement System - Braunschweig Straßenbahn Ansagesystem",
+  "scripts": {
+    "dev": "python -m http.server 8000 --directory public",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "tram",
+    "announcements",
+    "bsvg",
+    "braunschweig",
+    "ibis",
+    "pwa"
+  ],
+  "author": "BSVG",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakobneukirchner/bsvg-ans-ibis.git"
+  }
+}
