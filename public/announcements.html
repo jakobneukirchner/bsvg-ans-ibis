@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#00843D">
+  <meta name="description" content="BSVG Ansagesystem - Ansage-Interface">
+  
+  <title>Ansagen - BSVG</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/announcements.css">
+</head>
+<body>
+  <!-- Main Container -->
+  <main class="announcement-container">
+    <!-- Header with Line Info -->
+    <header class="announcement-header">
+      <button id="backButton" class="btn btn--icon btn--secondary back-btn" aria-label="Zurück">
+        <span class="icon icon--md icon--gray">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </span>
+      </button>
+      
+      <div class="line-badge" id="lineBadge">
+        <span class="line-badge__number">3</span>
+      </div>
+      
+      <div class="header-info">
+        <h1 class="header-title" id="headerTitle">Linie 3 / Umlauf 10</h1>
+        <p class="header-subtitle" id="headerSubtitle">Umleitung nach Gliesmarode</p>
+      </div>
+    </header>
+    
+    <!-- Ansage Controls -->
+    <section class="announcement-section">
+      <div class="announcement-card">
+        <h2 class="section-title">
+          <span class="icon icon--md icon--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </span>
+          <span>Ansagen</span>
+        </h2>
+        
+        <!-- Haupt-Ansage Button -->
+        <button id="playMainAnnouncement" class="btn btn--primary btn--large btn--full announcement-btn">
+          <span class="icon icon--lg icon--white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </span>
+          <span class="btn-text">HAUPTANSAGE ABSPIELEN</span>
+        </button>
+        
+        <!-- Playlist Preview -->
+        <div id="playlistPreview" class="playlist-preview">
+          <h3 class="playlist-title">Ansage-Playlist:</h3>
+          <div id="playlistItems" class="playlist-items"></div>
+        </div>
+        
+        <!-- Progress Indicator (Hidden by default) -->
+        <div id="playbackProgress" class="playback-progress hidden">
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <p id="progressText" class="progress-text">Spiele 1 von 5...</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Route Info -->
+    <section class="route-section">
+      <div class="route-card">
+        <h2 class="section-title">
+          <span class="icon icon--md icon--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="8" width="16" height="12" rx="2" ry="2"></rect>
+              <path d="M4 8V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"></path>
+              <line x1="8" y1="20" x2="6" y2="23"></line>
+              <line x1="16" y1="20" x2="18" y2="23"></line>
+              <circle cx="9" cy="14" r="1"></circle>
+              <circle cx="15" cy="14" r="1"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+            </svg>
+          </span>
+          <span>Fahrtroute</span>
+        </h2>
+        
+        <div id="routeInfo" class="route-info">
+          <!-- Route wird dynamisch gefüllt -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- Cycle Info (Optional) -->
+    <section id="cycleInfoSection" class="cycle-info-section hidden">
+      <div class="info-card">
+        <div class="info-row">
+          <span class="info-label">Typ:</span>
+          <span id="cycleType" class="info-value badge">Umleitung</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Gültig:</span>
+          <span id="cycleValidity" class="info-value">15.11.2025 - 15.01.2026</span>
+        </div>
+        <div id="cycleNotes" class="info-notes"></div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-content">
+      <div class="spinner spinner--large"></div>
+      <p class="loading-text">Lade Audio...</p>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="/js/config.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/storage.js"></script>
+  <script src="/js/audio-player.js"></script>
+  <script src="/js/announcements.js"></script>
+</body>
+</html>
