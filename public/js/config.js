@@ -6,11 +6,8 @@
  */
 
 const CONFIG = {
-  // Fileserver URL - PRODUCTION
-  FILESERVER_URL: 'https://bsvg-ibis-fs.netlify.app',
-  
-  // Fallback auf GitHub Raw Content falls Netlify down
-  FILESERVER_URL_FALLBACK: 'https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public',
+  // Fileserver URL - GitHub Raw (immer verfügbar)
+  FILESERVER_URL: 'https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public',
   
   // JSON Endpunkte (relativ zu FILESERVER_URL)
   ENDPOINTS: {
