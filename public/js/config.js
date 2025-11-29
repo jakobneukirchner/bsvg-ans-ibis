@@ -6,18 +6,18 @@
  */
 
 const CONFIG = {
-  // Fileserver URL (Netlify oder lokal)
-  FILESERVER_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:8000'
-    : 'https://bsvg-ans-ibis.netlify.app',
+  // Fileserver URL - PRODUCTION
+  FILESERVER_URL: 'https://bsvg-ibis-fs.netlify.app',
   
-  // JSON Endpunkte
+  // Fallback auf GitHub Raw Content falls Netlify down
+  FILESERVER_URL_FALLBACK: 'https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public',
+  
+  // JSON Endpunkte (relativ zu FILESERVER_URL)
   ENDPOINTS: {
-    LINES: '/examples/lines.json',
-    STOPS: '/examples/stops.json',
-    CYCLES: '/examples/cycles.json',
-    ANNOUNCEMENTS: '/examples/announcements.json',
-    AUDIO_LIBRARY: '/examples/audio-library.json'
+    LINES: '/lines.json',
+    STOPS: '/stops.json',
+    CYCLES: '/cycles.json',
+    AUDIO_LIBRARY: '/audio-library.json'
   },
   
   // LocalStorage Keys
