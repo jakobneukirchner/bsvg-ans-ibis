@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSVG Konfigurator</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/config.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="btn-back">← Zurück</a>
+            <h1>Umlauf-Konfigurator</h1>
+            <button class="btn btn-primary" id="exportBtn">Export JSON</button>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="cycles">Umläufe</button>
+            <button class="tab" data-tab="lines">Linien</button>
+            <button class="tab" data-tab="stops">Haltestellen</button>
+        </div>
+
+        <div class="tab-content active" id="tab-cycles">
+            <button class="btn btn-primary" id="addCycleBtn">+ Neuer Umlauf</button>
+            <div id="cyclesList"></div>
+        </div>
+
+        <div class="tab-content" id="tab-lines">
+            <button class="btn btn-primary" id="addLineBtn">+ Neue Linie</button>
+            <div id="linesList"></div>
+        </div>
+
+        <div class="tab-content" id="tab-stops">
+            <button class="btn btn-primary" id="addStopBtn">+ Neue Haltestelle</button>
+            <div id="stopsList"></div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/configurator.js"></script>
+</body>
+</html>
