@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/index.css">
   <style>
-    .cycle-selector{background:var(--color-surface);border:1px solid var(--color-card-border);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)}.cycle-selector-title{font-size:var(--font-size-base);font-weight:600;color:var(--color-text);margin-bottom:var(--space-3)}.cycle-groups{display:flex;flex-direction:column;gap:var(--space-3)}.cycle-group{border:1px solid var(--color-border);border-radius:var(--radius-sm);overflow:hidden}.cycle-group-header{background:var(--color-secondary);padding:var(--space-3);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s}.cycle-group-header:hover{background:var(--color-secondary-hover)}.cycle-group-header.active{background:var(--color-primary);color:white}.cycle-group-name{font-weight:600;font-size:var(--font-size-sm)}.cycle-group-arrow{transition:transform 0.2s}.cycle-group-arrow.open{transform:rotate(180deg)}.cycle-list{display:none;flex-direction:column;gap:0}.cycle-list.open{display:flex}.cycle-item{padding:var(--space-3);border-top:1px solid var(--color-border);cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;background:var(--color-background)}.cycle-item:hover{background:var(--color-secondary);transform:translateX(4px)}.cycle-item-id{font-weight:500;font-size:var(--font-size-sm);color:var(--color-text)}.cycle-item-name{font-size:var(--font-size-xs);color:var(--color-text-secondary)}.config-link{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--color-secondary);border-radius:var(--radius-sm);font-size:var(--font-size-sm);color:var(--color-text);text-decoration:none;margin-top:var(--space-4);transition:all 0.2s}.config-link:hover{background:var(--color-secondary-hover);transform:translateX(2px)}
+    .cycle-selector{background:var(--color-surface);border:1px solid var(--color-card-border);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)}.cycle-selector-title{font-size:var(--font-size-base);font-weight:600;color:var(--color-text);margin-bottom:var(--space-3)}.cycle-groups{display:flex;flex-direction:column;gap:var(--space-3)}.cycle-group{border:1px solid var(--color-border);border-radius:var(--radius-sm);overflow:hidden}.cycle-group-header{background:var(--color-secondary);padding:var(--space-3);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s}.cycle-group-header:hover{background:var(--color-secondary-hover)}.cycle-group-header.active{background:var(--color-primary);color:white}.cycle-group-name{font-weight:600;font-size:var(--font-size-sm)}.cycle-group-arrow{transition:transform 0.2s}.cycle-group-arrow.open{transform:rotate(180deg)}.cycle-list{display:none;flex-direction:column;gap:0}.cycle-list.open{display:flex}.cycle-item{padding:var(--space-3);border-top:1px solid var(--color-border);cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;background:var(--color-background)}.cycle-item:hover{background:var(--color-secondary);transform:translateX(4px)}.cycle-item-id{font-weight:500;font-size:var(--font-size-sm);color:var(--color-text)}.cycle-item-name{font-size:var(--font-size-xs);color:var(--color-text-secondary)}.config-link{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-4);background:var(--color-secondary);border-radius:var(--radius-sm);font-size:var(--font-size-sm);color:var(--color-text);text-decoration:none;margin-top:var(--space-4);transition:all 0.2s;border:2px solid var(--color-border);font-weight:600}.config-link:hover{background:var(--color-secondary-hover);transform:translateX(2px);border-color:var(--color-primary)}.config-link.v2{background:linear-gradient(135deg,var(--color-primary),var(--color-primary-hover));color:white;border:none;box-shadow:0 4px 12px rgba(var(--color-teal-500-rgb),0.3)}.config-link.v2:hover{box-shadow:0 6px 16px rgba(var(--color-teal-500-rgb),0.5);transform:translateX(2px) translateY(-2px)}.config-links{display:flex;gap:var(--space-3);margin-top:var(--space-4);flex-wrap:wrap}
   </style>
 </head>
 <body>
@@ -74,9 +74,14 @@
           <div id="cycleGroups" class="cycle-groups"></div>
         </div>
         
-        <a href="config.html" class="config-link">
-          🛠️ Zum Konfigurator
-        </a>
+        <div class="config-links">
+          <a href="config-v2.html" class="config-link v2">
+            ✨ Konfigurator V2 (NEU!)
+          </a>
+          <a href="config.html" class="config-link">
+            🛠️ Konfigurator V1
+          </a>
+        </div>
       </div>
     </section>
     
@@ -104,119 +109,7 @@
   <script src="/js/storage.js"></script>
   <script src="/js/app.js"></script>
   <script>
-    // CYCLE SELECTOR LOGIC
-    let allCycles = [];
-    let allLines = [];
-    
-    async function loadCyclesForSelector() {
-      try {
-        const base = CONFIG.FILESERVER_URL;
-        const [cyclesRes, linesRes] = await Promise.all([
-          fetch(base + '/cycles.json'),
-          fetch(base + '/lines.json')
-        ]);
-        
-        const cyclesData = await cyclesRes.json();
-        const linesData = await linesRes.json();
-        
-        allCycles = cyclesData.cycles || [];
-        allLines = linesData.lines || [];
-        
-        renderCycleSelector();
-      } catch (e) {
-        console.error('Failed to load cycles:', e);
-      }
-    }
-    
-    function renderCycleSelector() {
-      const container = document.getElementById('cycleGroups');
-      if (!container || allCycles.length === 0) return;
-      
-      // Gruppiere Cycles nach Linie
-      const grouped = {};
-      allCycles.forEach(cycle => {
-        if (!grouped[cycle.lineId]) {
-          grouped[cycle.lineId] = [];
-        }
-        grouped[cycle.lineId].push(cycle);
-      });
-      
-      // Sortiere Linien
-      const sortedLineIds = Object.keys(grouped).sort((a, b) => {
-        const lineA = allLines.find(l => l.id === a);
-        const lineB = allLines.find(l => l.id === b);
-        return (lineA?.name || a).localeCompare(lineB?.name || b);
-      });
-      
-      container.innerHTML = sortedLineIds.map(lineId => {
-        const line = allLines.find(l => l.id === lineId);
-        const cycles = grouped[lineId];
-        
-        return `
-          <div class="cycle-group">
-            <div class="cycle-group-header" onclick="toggleCycleGroup('${lineId}')">
-              <span class="cycle-group-name" style="color:${line?.color || 'inherit'}">
-                ${line ? line.name : lineId} (${cycles.length})
-              </span>
-              <span class="cycle-group-arrow" id="arrow-${lineId}">▼</span>
-            </div>
-            <div class="cycle-list" id="cycles-${lineId}">
-              ${cycles.map(cycle => `
-                <div class="cycle-item" onclick="selectCycle('${cycle.cycleId}')">
-                  <div>
-                    <div class="cycle-item-id">${cycle.cycleId}</div>
-                    <div class="cycle-item-name">${cycle.name}</div>
-                  </div>
-                  <span>→</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-    
-    function toggleCycleGroup(lineId) {
-      const list = document.getElementById('cycles-' + lineId);
-      const arrow = document.getElementById('arrow-' + lineId);
-      const header = arrow.parentElement;
-      
-      if (list.classList.contains('open')) {
-        list.classList.remove('open');
-        arrow.classList.remove('open');
-        header.classList.remove('active');
-      } else {
-        // Close all others
-        document.querySelectorAll('.cycle-list.open').forEach(l => l.classList.remove('open'));
-        document.querySelectorAll('.cycle-group-arrow.open').forEach(a => a.classList.remove('open'));
-        document.querySelectorAll('.cycle-group-header.active').forEach(h => h.classList.remove('active'));
-        
-        list.classList.add('open');
-        arrow.classList.add('open');
-        header.classList.add('active');
-      }
-    }
-    
-    function selectCycle(cycleId) {
-      const cycle = allCycles.find(c => c.cycleId === cycleId);
-      if (!cycle) return;
-      
-      const line = allLines.find(l => l.id === cycle.lineId);
-      if (!line) return;
-      
-      // Format: paddedLineId/paddedCycleId
-      const formatted = line.paddedId + '/' + cycle.paddedId;
-      document.getElementById('lineInput').value = formatted;
-      
-      // Trigger form submission
-      document.getElementById('lineInputForm').dispatchEvent(new Event('submit'));
-    }
-    
-    window.toggleCycleGroup = toggleCycleGroup;
-    window.selectCycle = selectCycle;
-    
-    // Load cycles when page loads
-    loadCyclesForSelector();
+    let allCycles=[],allLines=[];async function loadCyclesForSelector(){try{const base=CONFIG.FILESERVER_URL;const[cyclesRes,linesRes]=await Promise.all([fetch(base+'/cycles.json'),fetch(base+'/lines.json')]);const cyclesData=await cyclesRes.json();const linesData=await linesRes.json();allCycles=cyclesData.cycles||[];allLines=linesData.lines||[];renderCycleSelector()}catch(e){console.error('Failed to load cycles:',e)}}function renderCycleSelector(){const container=document.getElementById('cycleGroups');if(!container||allCycles.length===0)return;const grouped={};allCycles.forEach(cycle=>{if(!grouped[cycle.lineId]){grouped[cycle.lineId]=[]}grouped[cycle.lineId].push(cycle)});const sortedLineIds=Object.keys(grouped).sort((a,b)=>{const lineA=allLines.find(l=>l.id===a);const lineB=allLines.find(l=>l.id===b);return(lineA?.name||a).localeCompare(lineB?.name||b)});container.innerHTML=sortedLineIds.map(lineId=>{const line=allLines.find(l=>l.id===lineId);const cycles=grouped[lineId];return`<div class="cycle-group"><div class="cycle-group-header" onclick="toggleCycleGroup('${lineId}')"><span class="cycle-group-name" style="color:${line?.color||'inherit'}">${line?line.name:lineId} (${cycles.length})</span><span class="cycle-group-arrow" id="arrow-${lineId}">▼</span></div><div class="cycle-list" id="cycles-${lineId}">${cycles.map(cycle=>`<div class="cycle-item" onclick="selectCycle('${cycle.cycleId}')"><div><div class="cycle-item-id">${cycle.cycleId}</div><div class="cycle-item-name">${cycle.name}</div></div><span>→</span></div>`).join('')}</div></div>`}).join('')}function toggleCycleGroup(lineId){const list=document.getElementById('cycles-'+lineId);const arrow=document.getElementById('arrow-'+lineId);const header=arrow.parentElement;if(list.classList.contains('open')){list.classList.remove('open');arrow.classList.remove('open');header.classList.remove('active')}else{document.querySelectorAll('.cycle-list.open').forEach(l=>l.classList.remove('open'));document.querySelectorAll('.cycle-group-arrow.open').forEach(a=>a.classList.remove('open'));document.querySelectorAll('.cycle-group-header.active').forEach(h=>h.classList.remove('active'));list.classList.add('open');arrow.classList.add('open');header.classList.add('active')}}function selectCycle(cycleId){const cycle=allCycles.find(c=>c.cycleId===cycleId);if(!cycle)return;const line=allLines.find(l=>l.id===cycle.lineId);if(!line)return;const formatted=line.paddedId+'/'+cycle.paddedId;document.getElementById('lineInput').value=formatted;document.getElementById('lineInputForm').dispatchEvent(new Event('submit'))}window.toggleCycleGroup=toggleCycleGroup;window.selectCycle=selectCycle;loadCyclesForSelector();
   </script>
 </body>
 </html>
