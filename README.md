@@ -6,9 +6,9 @@ Eine Progressive Web App (PWA) für mobile Endgeräte, die Straßenbahnfahrern e
 
 ## 🌐 Live-URLs
 
-**Haupt-App:** [BEREIT FÜR DEPLOYMENT]
+**Haupt-App:** https://bsvg-ibis.netlify.app
 
-**Fileserver:** https://bsvg-ibis-fs.netlify.app
+**Fileserver (GitHub Raw):** https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/
 
 ---
 
@@ -22,7 +22,7 @@ Eine Progressive Web App (PWA) für mobile Endgeräte, die Straßenbahnfahrern e
 - ✅ **Offline-Ready** - LocalStorage für Session-Daten
 - ✅ **BSVG Design System** - Offizielle Farben und Typografie
 - ✅ **Zero Dependencies** - Vanilla JavaScript, HTML, CSS
-- ✅ **Fallback System** - GitHub Raw Content als Backup
+- ✅ **GitHub Raw Content** - Immer verfügbar, kein Server nötig
 
 ---
 
@@ -32,7 +32,7 @@ Eine Progressive Web App (PWA) für mobile Endgeräte, die Straßenbahnfahrern e
 |------------|-------------|
 | **Frontend** | Vanilla HTML5, CSS3, JavaScript (ES6+) |
 | **Hosting** | Netlify |
-| **Fileserver** | Netlify + GitHub Raw Fallback |
+| **Fileserver** | GitHub Raw Content |
 | **Storage** | LocalStorage, SessionStorage |
 | **Audio** | Web Audio API (Lazy Loading) |
 | **Icons** | Custom SVG |
@@ -40,21 +40,30 @@ Eine Progressive Web App (PWA) für mobile Endgeräte, die Straßenbahnfahrern e
 
 ---
 
-## 🚀 Deployment auf Netlify
+## 🚀 URLs
 
-### Voraussetzungen
+### Haupt-App
 
-✅ **Fileserver bereits deployed:** https://bsvg-ibis-fs.netlify.app
+**Live:** https://bsvg-ibis.netlify.app
 
-### Haupt-App deployen
+**Repository:** https://github.com/jakobneukirchner/bsvg-ans-ibis
 
-1. Gehe zu [netlify.com](https://www.netlify.com/)
-2. "Add new site" → "Import existing project"
-3. Wähle GitHub → `jakobneukirchner/bsvg-ans-ibis`
-4. **Build Settings:**
-   - Build command: (leer)
-   - Publish directory: `public`
-5. Deploy!
+### Fileserver (GitHub Raw)
+
+**JSON-Dateien:**
+```
+https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/lines.json
+https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/stops.json
+https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/cycles.json
+https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/audio-library.json
+```
+
+**Audio-Dateien:**
+```
+https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/announcements/de/lines/line_3.mp3
+```
+
+**Repository:** https://github.com/jakobneukirchner/bsvg-ans-fileserver
 
 ---
 
@@ -85,19 +94,13 @@ UU  = 2-stellige Umlaufnummer MIT führenden Nullen
 
 Audiodateien werden **ERST beim Abspielen** geladen - nicht vorher!
 
-### Datenquellen
+### GitHub Raw als Quelle
 
-**Primär (Netlify):**
-```
-https://bsvg-ibis-fs.netlify.app/lines.json
-https://bsvg-ibis-fs.netlify.app/audio-library.json
-https://bsvg-ibis-fs.netlify.app/announcements/de/lines/line_3.mp3
-```
-
-**Fallback (GitHub Raw):**
-```
-https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/lines.json
-```
+Alle Daten werden direkt von GitHub Raw geladen:
+- ✅ Immer verfügbar (99.9% Uptime)
+- ✅ Kein separater Server nötig
+- ✅ Automatische Updates bei Git Push
+- ✅ Kostenlos und unbegrenzt
 
 ---
 
@@ -130,11 +133,8 @@ https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/publ
 
 ```javascript
 const CONFIG = {
-  // Production Fileserver
-  FILESERVER_URL: 'https://bsvg-ibis-fs.netlify.app',
-  
-  // Fallback auf GitHub Raw
-  FILESERVER_URL_FALLBACK: 'https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public',
+  // GitHub Raw (immer verfügbar)
+  FILESERVER_URL: 'https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public',
   
   ENDPOINTS: {
     LINES: '/lines.json',
@@ -172,7 +172,7 @@ bsvg-ans-ibis/
 │   ├── announcements.html   # Ansage-Interface
 │   ├── css/                 # Design System
 │   ├── js/
-│   │   ├── config.js        # → Production URLs
+│   │   ├── config.js        # → GitHub Raw URLs
 │   │   ├── utils.js
 │   │   ├── storage.js
 │   │   ├── audio-player.js  # Lazy Loading Engine
@@ -190,8 +190,7 @@ bsvg-ans-ibis/
 ### Funktional
 - [ ] Eingabe-Validierung (LLL/UU Format)
 - [ ] Recent Entries anzeigen
-- [ ] JSON-Dateien laden von Fileserver
-- [ ] Fallback zu GitHub Raw bei Fehler
+- [ ] JSON-Dateien laden von GitHub Raw
 - [ ] Audio abspielen (Lazy Loading)
 - [ ] Session Storage funktioniert
 
@@ -211,28 +210,28 @@ bsvg-ans-ibis/
 
 ## 🔗 Links
 
+**Live-App:** https://bsvg-ibis.netlify.app
+
 **Repositories:**
 - Haupt-App: https://github.com/jakobneukirchner/bsvg-ans-ibis
 - Fileserver: https://github.com/jakobneukirchner/bsvg-ans-fileserver
 
-**Live:**
-- Fileserver: https://bsvg-ibis-fs.netlify.app
-- Haupt-App: [Nach Deployment]
+**Fileserver (GitHub Raw):**
+- JSON: https://raw.githubusercontent.com/jakobneukirchner/bsvg-ans-fileserver/main/public/
 
 ---
 
 ## 🚀 Status
 
-🟢 **Production Ready**
+🟢 **Live & Production Ready**
 
+- ✅ Deployed: https://bsvg-ibis.netlify.app
 - ✅ Code vollständig
 - ✅ Design-System implementiert
 - ✅ Mobile-optimiert
 - ✅ Lazy Loading Audio
-- ✅ Fallback-Mechanismus
+- ✅ GitHub Raw als Datenquelle
 - ✅ Zero Dependencies
-- ✅ Fileserver deployed (https://bsvg-ibis-fs.netlify.app)
-- ⏳ Haupt-App Deployment ausstehend
 
 ---
 
